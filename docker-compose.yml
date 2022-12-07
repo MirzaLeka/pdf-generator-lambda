@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  pdf-generator:
+    container_name: pdf-generator
+    env_file:
+      - docker.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9000:8080"

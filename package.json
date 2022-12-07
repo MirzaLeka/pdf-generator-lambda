@@ -1,0 +1,22 @@
+{
+  "name": "pdf-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chrome-aws-lambda": "^10",
+    "puppeteer-core": "^10"
+  },
+  "devDependencies": {
+    "puppeteer": "^19.3.0"
+  },
+  "engines": {
+    "node": "^14"
+  },
+  "scripts": {
+    "test": "node -e \"require('./index').handler(require('./event.json'));\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
