@@ -5,17 +5,18 @@ fetch(url, {
   mode: 'no-cors',
   method: 'POST',
   headers: {
-    accept: 'application.json',
     'Content-Type': 'application/json'
   },
-  body,
-  cache: 'default'
+  body: JSON.stringify(body)
 })
-.then(res => res.json())
-.then((data) => {
-  console.log('all went well')
-  console.log(data)
+.then(res => {
+  console.log('res ', res)
+  // return res.json()
 })
+// .then((data) => {
+//   console.log('all went well')
+//   console.log(data)
+// })
 .catch(e => {
   console.log('error ocurred')
   console.log(e.message)

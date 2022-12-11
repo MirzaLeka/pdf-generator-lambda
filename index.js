@@ -28,11 +28,17 @@ exports.handler = async (event, context, callback) => {
 
 
     // Todo maybe return just buffer
+    /*
+      headers: {
+        "Content-type": "application/json",
+        "content-disposition": "attachment; filename=test.pdf",
+      },
+    */
     response = {
       statusCode: 200,
       headers: {
-        "Content-type": "application/pdf",
-        "content-disposition": "attachment; filename=test.pdf",
+        "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+        "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
       },
       body: buffer,
       isBase64Encoded: false,
