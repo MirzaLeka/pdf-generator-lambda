@@ -1,0 +1,5 @@
+How To Deploy Puppeteer Script in AWS Lambda in 2022 - YouTube
+https://www.youtube.com/watch?v=ch6qKgkYbgM
+
+Send Emails with Attachments using React, AWS Lambda, API Gateway, and SES - YouTube
+https://www.youtube.com/watch?v=-_hRWBpaJZk

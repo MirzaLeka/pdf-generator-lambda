@@ -2,8 +2,8 @@
 const chromium = require('chrome-aws-lambda');
 
 exports.handler = async (event, context, callback) => {
-  let result = null;
   let browser = null;
+  let response = null;
 
   try {
     browser = await chromium.puppeteer.launch({
@@ -14,11 +14,31 @@ exports.handler = async (event, context, callback) => {
       ignoreHTTPSErrors: true,
     });
 
-    let page = await browser.newPage();
+    const page = await browser.newPage();
 
-    await page.goto(event.url || 'https://google.com');
+    const dummy = {
+      body: `<h1>hello world</h1>`
+    }
 
-    result = await page.title();
+    await page.setContent(event.body || dummy, {
+      waitUntil: ["load", "networkidle0"],
+    });
+
+    const buffer = await page.pdf({ format: "A4" });
+
+
+    // Todo maybe return just buffer
+    response = {
+      statusCode: 200,
+      headers: {
+        "Content-type": "application/pdf",
+        "content-disposition": "attachment; filename=test.pdf",
+      },
+      body: buffer,
+      isBase64Encoded: false,
+      message: "OK",
+    };
+
   } catch (error) {
     return callback(error);
   } finally {
@@ -27,5 +47,5 @@ exports.handler = async (event, context, callback) => {
     }
   }
 
-  return callback(null, result);
+  return callback(null, response);
 };
